@@ -1,3 +1,4 @@
+const { expect } = require('@jest/globals');
 const NotesModel = require('./notesModel')
 
 describe("NotesModel class", () => {
@@ -7,4 +8,9 @@ describe("NotesModel class", () => {
     model.add("Go to the gym");
     expect(model.getNotes()).toEqual(["Buy Milk", "Go to the gym"]);
   });
+
+  it('returns an empty noteList', () => {
+      model.reset()
+      expect(model.getNotes()).toEqual([])
+  })
 });
