@@ -4,7 +4,7 @@
 const fs = require("fs");
 
 const NotesModel = require("./notesModel");
-const NotesView = require('./notesView')
+const NotesView = require("./notesView");
 describe("Page view", () => {
   it("should display 2 notes", () => {
     document.body.innerHTML = fs.readFileSync("./index.html");
@@ -17,4 +17,17 @@ describe("Page view", () => {
 
     expect(document.querySelectorAll("div.note").length).toEqual(2);
   });
+  it('should add note by click add button', () => {
+    document.body.innerHTML = fs.readFileSync("./index.html");
+      const model = new NotesModel()
+      const view = new NotesView()
+      const inputEl = document.querySelector('#note-input')
+      inputEl.value = 'test note'
+      const addButtonEl = document.querySelector('#add-note')
+      addButtonEl.click()
+      
+      expect(document.querySelectorAll('#note').length).toEqual(1);
+      expect(document.querySelectorAll('#note')[0].innerText).toEqual('test note');
+  })
+  
 });

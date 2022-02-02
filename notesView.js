@@ -6,7 +6,11 @@ class NotesView {
   constructor(model = new NotesModel()) {
     this.model = model;
     this.mainContainerEl = document.querySelector("#main-container");
-    console.log(this.mainContainerEl)
+    document.querySelector('#add-note').addEventListener('click', () => {
+      const newNote = document.querySelector('#note-input').value
+      this.addNewNote(newNote)
+    })
+    
   }
 
   displayNotes() {
@@ -15,11 +19,16 @@ class NotesView {
       const noteEl = document.createElement("div");
       noteEl.innerText = note;
       noteEl.className = "note";
+      noteEl.id = "note";
       this.mainContainerEl.append(noteEl);
     });
+  }
+
+  addNewNote(newNote) {
+    this.model.add(newNote);
+    this.displayNotes();
   }
 }
 
 module.exports = NotesView;
-const n = new NotesView()
-console.log(n)
+
