@@ -42,6 +42,10 @@
           });
         }
         displayNotes() {
+          const prevNotes = document.querySelectorAll("#note");
+          prevNotes.forEach((n) => {
+            n.remove();
+          });
           const notes = this.model.getNotes();
           notes.forEach((note) => {
             const noteEl = document.createElement("div");
@@ -54,6 +58,8 @@
         addNewNote(newNote) {
           this.model.add(newNote);
           this.displayNotes();
+          const inputEl = document.querySelector("#note-input");
+          inputEl.value = "";
         }
       };
       module.exports = NotesView2;
@@ -64,7 +70,6 @@
   var NotesModel = require_notesModel();
   var NotesView = require_notesView();
   var model = new NotesModel();
-  model.add("This is the first node");
   var view = new NotesView(model);
   view.displayNotes();
   console.log(model.getNotes());
