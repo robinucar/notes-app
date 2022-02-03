@@ -1,10 +1,12 @@
 /**
  * @jest-environment jsdom
  */
+
 const NotesModel = require("./notesModel");
 class NotesView {
   constructor(model = new NotesModel()) {
     this.model = model;
+
     this.mainContainerEl = document.querySelector("#main-container");
     document.querySelector("#add-note").addEventListener("click", () => {
       const newNote = document.querySelector("#note-input").value;
@@ -31,9 +33,8 @@ class NotesView {
   addNewNote(newNote) {
     this.model.add(newNote);
     this.displayNotes();
-    const inputEl = document.querySelector('#note-input')
-    inputEl.value = ''
-    
+    const inputEl = document.querySelector("#note-input");
+    inputEl.value = "";
   }
 }
 

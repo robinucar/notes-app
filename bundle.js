@@ -4,6 +4,20 @@
     return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
 
+  // notesApi.js
+  var require_notesApi = __commonJS({
+    "notesApi.js"(exports, module) {
+      var NotesApi2 = class {
+        loadNotes(callback) {
+          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+      };
+      module.exports = NotesApi2;
+    }
+  });
+
   // notesModel.js
   var require_notesModel = __commonJS({
     "notesModel.js"(exports, module) {
@@ -22,6 +36,9 @@
             this.notesList.pop();
           }
           return this.notesList;
+        }
+        setNotes(notes) {
+          this.notesList = notes;
         }
       };
       module.exports = NotesModel2;
@@ -67,10 +84,15 @@
   });
 
   // index.js
+  var NotesApi = require_notesApi();
   var NotesModel = require_notesModel();
   var NotesView = require_notesView();
   var model = new NotesModel();
-  var view = new NotesView(model);
+  var view = new NotesView(model, api);
+  var api = new NotesApi();
+  api.loadNotes((notes) => {
+    model.setNotes(notes);
+    view.displayNotes();
+  });
   view.displayNotes();
-  console.log(model.getNotes());
 })();

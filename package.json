@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/robinucar/notes-app#readme",
   "dependencies": {
-    "jest": "^27.4.7"
+    "browserify": "^17.0.0",
+    "jest": "^27.4.7",
+    "jest-fetch-mock": "^3.0.3"
   }
 }

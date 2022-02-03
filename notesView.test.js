@@ -30,7 +30,7 @@ describe("Page view", () => {
       expect(document.querySelectorAll('#note')[0].innerText).toEqual('test note');
   })
 
-  fit('should clear previous notes and return the correct number of notes', () => {
+  it('should clear previous notes and return the correct number of notes', () => {
         document.body.innerHTML = fs.readFileSync("./index.html");
       const model = new NotesModel()
       const view = new NotesView(model)

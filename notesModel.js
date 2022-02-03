@@ -19,6 +19,10 @@ class NotesModel {
       // or
     //   return this.notesList.length = 0
   }
+
+  setNotes(notes) {
+    this.notesList = notes
+  }
 }
 
 module.exports = NotesModel;
