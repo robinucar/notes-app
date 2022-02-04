@@ -2,10 +2,12 @@
  * @jest-environment jsdom
  */
 
+const NotesApi = require("./notesApi");
 const NotesModel = require("./notesModel");
 class NotesView {
   constructor(model = new NotesModel()) {
     this.model = model;
+    this.api = new NotesApi()
 
     this.mainContainerEl = document.querySelector("#main-container");
     document.querySelector("#add-note").addEventListener("click", () => {
@@ -33,6 +35,7 @@ class NotesView {
   addNewNote(newNote) {
     this.model.add(newNote);
     this.displayNotes();
+    this.api.createNote(newNote)
     const inputEl = document.querySelector("#note-input");
     inputEl.value = "";
   }

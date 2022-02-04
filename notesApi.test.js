@@ -14,4 +14,16 @@ describe('NotesApi class', () => {
             expect(result).toBe('This note is coming from the server')
         })
     })
+
+    it('creates a new note to the server with POST request', () => {
+        const api = new NotesApi();
+        fetch.mockResponseOnce(JSON.stringify(
+            'This note is going to the server'
+        ));
+
+        api.createNote(result => {
+          expect(result).toBe('This note is going to the server')
+        })
+
+    })
 })
